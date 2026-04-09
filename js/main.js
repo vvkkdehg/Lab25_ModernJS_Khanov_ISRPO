@@ -120,10 +120,10 @@
 //   try {
 //     const step1 = await checkStock(true);
 //     console.log(step1);
-    
+
 //     const step2 = await calculatePrice();
 //     console.log(step2);
-    
+
 //     const step3 = await confirmOrder();
 //     console.log(step3);
 //   } catch (error) {
@@ -192,3 +192,143 @@
 // }
 
 // createPost();
+
+// console.log("Optional Chaining");
+
+// const user1 = {
+//     name: "Андрей",
+//     address: {
+//         city: "Волжский",
+//         street: "Пушкина",
+//     },
+// };
+
+// const user2 = {
+//     name: "Дмитрий",
+// };
+
+//const city = user2.address.city;
+
+// const city1 = user2.address && user2.address.city;
+// console.log("Город (старый способ): ", city1);
+
+// const city2 = user2.address?.city;
+// console.log("Город (новый способ):", city2);
+
+// const street = user1.address?.street;
+// console.log("Улица:", street);
+
+// const admin = {
+//   name: "Администратор",
+//   permissions: {
+//     canDelete: () => true,
+//   },
+// };
+
+// const guest = {
+//   name: "Гость",
+// };
+
+// console.log("Админ может удалять?", admin.permissions?.canDelete?.());
+// console.log("Гость может удалять?", guest.permissions?.canDelete?.());
+
+// const company = {
+//   name: "Tech Corp",
+//   employees: [
+//     { name: "Надежда", role: "Developer" },
+//     { name: "Анна", role: "Designer" }
+//   ]
+// };
+
+// const startup = {
+//   name: "New Startup"
+// };
+
+// console.log("Первый сотрудник:", company.employees?.[0]?.name);
+// console.log("Первый сотрудник стартапа:", startup.employees?.[0]?.name);
+
+// console.log("Nullish Coalescing");
+
+// const value1 = 0;
+// const value2 = "";
+// const value3 = false;
+// const value4 = null;
+// const value5 = undefined;
+
+// console.log('value1 || "default":', value1 || "default");
+// console.log('value2 || "default":', value2 || "default");
+// console.log('value3 || "default":', value3 || "default");
+
+// console.log('value1 ?? "default":', value1 ?? "default");
+// console.log('value2 ?? "default":', value2 ?? "default");
+// console.log('value3 ?? "default":', value3 ?? "default");
+// console.log('value4 ?? "default":', value4 ?? "default");
+// console.log('value5 ?? "default":', value5 ?? "default");
+
+// function displayUserSettings(settings) {
+//   const theme = settings?.theme ?? "light";
+//   const fontSize = settings?.fontSize ?? 14;
+//   const notifications = settings?.notifications ?? true;
+
+//   console.log("Настройки пользователя:");
+//   console.log("Тема:", theme);
+//   console.log("Размер шрифта:", fontSize);
+//   console.log("Уведомления:", notifications);
+// }
+
+// displayUserSettings({ theme: "dark", fontSize: 16 });
+// displayUserSettings({ notifications: false });
+// displayUserSettings({});
+
+// const apiResponse = {
+//   data: {
+//     user: {
+//       profile: {
+//         settings: {
+//           language: "ru",
+//         },
+//       },
+//     },
+//   },
+// };
+
+// const language = apiResponse.data?.user?.profile?.settings?.language ?? "en";
+// console.log("Язык:", language);
+
+// const emptyResponse = {};
+// const defaultLanguage = emptyResponse?.data?.user?.profile?.settings?.language ?? "en";
+// console.log("Язык по умолчанию:", defaultLanguage);
+
+const order = {
+  customer: {
+    name: "Женек Журавский",
+    email: "ne4elmol@yandex.ru",
+    phone: "+7 992 412-79-64",
+  },
+  shipping: {
+    address: {
+      city: "Волжский",
+      street: "87 гвардейская",
+      house: "67",
+    },
+  },
+  payment: {
+    method: "банковская карта",
+    status: "оплачено",
+  },
+};
+
+function displayOrder(orderData) {
+  const name = orderData.customer?.name ?? "Не указано";
+  const city = orderData.shipping?.address?.city ?? "Не указан";
+  const street = orderData.shipping?.address?.street ?? "Не указана";
+  const house = orderData.shipping?.address?.house ?? "Не указан";
+  const method = orderData.payment?.method ?? "Не выбран";
+  const status = orderData.payment?.status ?? "Неизвестно";
+
+  console.log(`Клиент: ${name}`);
+  console.log(`Адрес: ${city}, ${street}, ${house}`);
+  console.log(`Оплата: ${method}, статус: ${status}`);
+}
+
+displayOrder(order);
