@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Конвертер валют</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Конвертер валют</h1>
+    
+    <div class="converter">
+      <input type="number" id="amount" placeholder="Введите сумму (RUB)">
+      <div class="currency-buttons">
+        <button data-currency="USD">USD</button>
+        <button data-currency="EUR">EUR</button>
+        <button data-currency="GBP">GBP</button>
+        <button data-currency="KZT">KZT</button>
+        <button data-currency="BYN">BYN</button>
+      </div>
+      <button id="convertBtn">Конвертировать</button>
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <script type="module" src="js/samost.js"></script>
+</body>
+</html>
