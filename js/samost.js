@@ -21,10 +21,23 @@ function getCurrencySymbol(currency) {
   return symbols[currency] ?? currency;
 }
 
+function validateInput(amount) {
+  if (amount > 0) {
+    return null;
+  } else {
+    return "Введите сумму больше 0";
+  }
+}
+
 function updateResult(amount, currency, convertedAmount) {
   const resultDiv = document.getElementById("result");
   const symbol = getCurrencySymbol(currency);
   resultDiv.textContent = `${amount} RUB = ${convertedAmount} ${symbol}`;
+}
+
+function showError(message) {
+  const resultDiv = document.getElementById("result");
+  resultDiv.textContent = message;
 }
 
 const convertBtn = document.getElementById("convertBtn");
@@ -35,6 +48,11 @@ convertBtn.addEventListener("click", () => {
   const amount = parseFloat(amountInput.value);
   const currency = currencySelect.value;
   
-  const converted = convert(amount, currency);
-  updateResult(amount, currency, converted);
+  const error = validateInput(amount);
+  if (error) {
+    showError(error);
+  } else {
+    const converted = convert(amount, currency);
+    updateResult(amount, currency, converted);
+  }
 });
